@@ -73,5 +73,9 @@ The animation stops if either all humans or zombies die out.
 ## Starting the Animation
 The code creates an animation object using `animation.FuncAnimation()` and specifies the `animate()` function to be called in each round. The interval between each round is set to 100 milliseconds. The animation is displayed using `plt.show()`.
 
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
 ## Conclusion
 This code implements a simulation of the spread of a zombie virus using the SEIR model. It displays population changes over time and provides a visual representation of the virus spread. By adjusting the parameters, you can explore different scenarios and observe the consequences of changes in the spread rate, recovery duration, and other factors.
