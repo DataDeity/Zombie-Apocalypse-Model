@@ -1,75 +1,77 @@
-Rekommender at du leser denne her: https://docs.google.com/document/d/14ORG8kxilITxYplmJD_6uKYcscgWtNICAaEV6ECTAqg/edit?usp=sharing
+# Simulation of Zombie Virus Spread
 
-Dokumentasjon for Simulering av Spredning av Zombie Virus
-Denne koden er en simulering av spredningen av et zombievirus i en befolkning. Den bruker SEIR (Susceptible-Exposed-Infected-Recovered) modellen for å simulere dynamikken i virusets spredning. Simuleringen visualiseres ved hjelp av matplotlib-biblioteket i Python.
+This code is a simulation of the spread of a zombie virus in a population. It utilizes the SEIR (Susceptible-Exposed-Infected-Recovered) model to simulate the dynamics of the virus spread. The simulation is visualized using the matplotlib library in Python.
 
-Nødvendige Libraries
-Koden er avhengig av følgende Python-biblioteker:
+## Required Libraries
+The code relies on the following Python libraries:
 
-matplotlib.pyplot: Brukes til å opprette plottet og visualisere simuleringen.
-matplotlib.animation: Brukes til å animere plottet.
-numpy: Brukes til numeriske beregninger og array-manipulering.
-random: Brukes til å generere tilfeldige tall.
-Sørg for at disse bibliotekene er installert i Python-miljøet der koden blir kjørt.
+- matplotlib.pyplot: Used to create plots and visualize the simulation.
+- matplotlib.animation: Used to animate the plots.
+- numpy: Used for numerical calculations and array manipulation.
+- random: Used to generate random numbers.
 
-Simulering Parametere
-Simuleringen har flere parametere som kan justeres for å kontrollere oppførselen til virusets spredning og andre aspekter av simuleringen. Parametrene og deres initielle verdier er som følger:
+Make sure these libraries are installed in the Python environment where the code is being run.
 
-men: Initialt antall menn i befolkningen.
-women: Initialt antall kvinner i befolkningen.
-zombies: Initialt antall zombier i befolkningen.
-deaths: Initialt antall dødsfall i befolkningen.
-resources: Initialt antall tilgjengelige ressurser.
-exposed: Initialt antall personer som er eksponert for viruset.
-recovered: Initialt antall personer som har kommet seg etter viruset.
-infection_rate: Rate for hvordan viruset sprer seg fra smittede personer til mottakelige personer.
-exposure_duration: Varighet av eksponeringsperioden for viruset.
-recovery_duration: Varighet av utvinningsperioden fra viruset.
-science_group_size: Størrelse på en vitenskapsgruppe som jobber med å finne et motmiddel mot viruset.
-antidote_chance: Sjanse for at vitenskapsgruppen utvikler et motmiddel.
-wipeout_chance: Sjanse for at vitenskapsgruppen blir utryddet.
-Disse parameterne kan justeres for å utforske ulike scenarier og observere effektene på virusets spredning.
+## Simulation Parameters
+The simulation has several parameters that can be adjusted to control the behavior of the virus spread and other aspects of the simulation. The parameters and their initial values are as follows:
 
+- men: Initial number of men in the population.
+- women: Initial number of women in the population.
+- zombies: Initial number of zombies in the population.
+- deaths: Initial number of deaths in the population.
+- resources: Initial number of available resources.
+- exposed: Initial number of individuals exposed to the virus.
+- recovered: Initial number of individuals who have recovered from the virus.
+- infection_rate: Rate at which the virus spreads from infected individuals to susceptible individuals.
+- exposure_duration: Duration of the exposure period to the virus.
+- recovery_duration: Duration of the recovery period from the virus.
+- science_group_size: Size of a science group working on finding a cure for the virus.
+- antidote_chance: Chance of the science group developing a cure.
+- wipeout_chance: Chance of the science group being wiped out.
 
-Initialisering av Plottet
-Koden initialiserer et plott ved hjelp av matplotlib.pyplot. Den oppretter en figur og legger til en enkelt subplot i den. X-aksen representerer tid, og Y-aksen representerer befolkning/ressurser. Plottet vil vise flere linjer som representerer ulike befolkningsgrupper og ressursnivåer over tid.
+These parameters can be adjusted to explore different scenarios and observe the effects on the virus spread.
 
-De initielle grensene for x-aksen og y-aksen er satt basert på de initielle befolkningsverdiene.
+## Plot Initialization
+The code initializes a plot using matplotlib.pyplot. It creates a figure and adds a single subplot to it. The X-axis represents time, and the Y-axis represents population/resources. The plot will display multiple lines representing different population groups and resource levels over time.
 
-Initialisering av Befolkningsdata
-Koden initialiserer lister for å lagre befolknings- og ressursdata over tid. Disse listene brukes til å oppdatere plottet under animasjonen. De initielle verdiene for befolkningsdataene blir lagt til i de respektive listene.
+The initial limits for the X-axis and Y-axis are set based on the initial population values.
 
-Plottlinjer
-Koden oppretter flere plottlinjer som vil vise befolknings- og ressursdataene på plottet. Hver linje er knyttet til en spesifikk liste med data.
+## Population Data Initialization
+The code initializes lists to store population and resource data over time. These lists are used to update the plot during the animation. The initial values for the population data are added to their respective lists.
 
-Oppdatering av Befolkningen
-update_population()-funksjonen blir kalt i hver animasjonsrunde for å oppdatere befolkningen basert på spesifikke regler og modeller. Funksjonen inneholder følgende logikk:
+## Plot Lines
+The code creates several plot lines that will display the population and resource data on the plot. Each line is associated with a specific data list.
 
-Oppdatering av SEIR-modellen: Beregner antall nye eksponerte og antall nye friskmeldte basert på infeksjonsraten og utvinningsvarigheten. Oppdaterer også de eksponerte og friskmeldte populasjonene, samt trekker fra antall nye eksponerte fra menn og kvinner populasjonene.
+## Population Update
+The `update_population()` function is called in each animation round to update the population based on specific rules and models. The function includes the following logic:
 
-Zombieinfeksjon og død: Beregner infeksjonsraten for zombier og sjekker om hver person blir infisert. Hvis en person blir infisert, økes dødsfallene, og antall menn eller kvinner reduseres.
+- SEIR model update: Calculates the number of new exposed and new recovered based on the infection rate and recovery duration. Also updates the exposed and recovered populations and subtracts the number of new exposed from the men and women populations.
 
-Repopulasjon og naturlige dødsfall: Beregner sannsynligheten for repopulasjon basert på antall menn, kvinner, zombier og dødsfall. Hvis sjansen for repopulasjon slår til, legges det til nyfødte babyer i menn og kvinner populasjonene. Beregner også sannsynligheten for naturlige dødsfall og øker dødsfallene med et tilfeldig antall.
+- Zombie infection and death: Calculates the infection rate for zombies and checks if each person becomes infected. If a person gets infected, deaths increase, and the number of men or women decreases.
 
-Nedbrytning av zombier: Trekker fra et tilfeldig antall zombier for å simulere nedbrytning.
+- Repopulation and natural deaths: Calculates the probability of repopulation based on the number of men, women, zombies, and deaths. If the chance of repopulation occurs, newborn babies are added to the men and women populations. Also calculates the probability of natural deaths and increases deaths by a random amount.
 
-Ressurshåndtering: Trekker fra et tilfeldig antall ressurser for å simulere forbruket.
+- Zombie decay: Subtracts a random number of zombies to simulate decay.
 
-Sult: Hvis ressursene faller under null, sjekkes det om sult oppstår for hver individ. Hvis sult oppstår, reduseres antall menn og kvinner.
+- Resource management: Subtracts a random number of resources to simulate consumption.
 
-Handlinger fra vitenskapsgruppen: Hvis vitenskapsgruppen er til stede, sjekkes det om de utvikler et motmiddel eller blir utryddet basert på gitte sjanser.
+- Starvation: If resources fall below zero, checks for starvation for each individual. If starvation occurs, the number of men and women decreases.
 
-Justering av repopulasjon basert på antall menn og kvinner: Beregner sannsynligheten for repopulasjon igjen og legger til nyfødte babyer hvis sjansen slår til.
+- Actions from the science group: If the science group is present, checks if
 
-Animasjon Funksjon
-animate()-funksjonen er en animasjonskalbaksfunksjon som oppdaterer plottet i hver runde. Den kaller update_population()-funksjonen for å oppdatere befolkningen og ressursverdiene. Deretter legger den til de oppdaterte verdiene i de respektive listene for plotting. Til slutt oppdaterer den plottlinjene med de nye dataene.
+ they develop a cure or get wiped out based on given chances.
 
-Funksjonen justerer også grensene for x-aksen og y-aksen dynamisk basert på de nåværende dataene.
+- Adjusting repopulation based on the number of men and women: Calculates the probability of repopulation again and adds newborn babies if the chance occurs.
 
-Animasjonen stopper hvis enten alle mennesker eller zombier dør ut.
+## Animation Function
+The `animate()` function is an animation callback function that updates the plot in each round. It calls the `update_population()` function to update the population and resource values. Then it adds the updated values to their respective lists for plotting. Finally, it updates the plot lines with the new data.
 
-Start av Animasjon
-Koden oppretter en animasjonsobjekt ved hjelp av animation.FuncAnimation() og angir animate()-funksjonen som kalles i hver runde. Intervallet mellom hver runde er satt til 100 millisekunder. Animasjonen vises ved hjelp av plt.show().
+The function also dynamically adjusts the limits for the X-axis and Y-axis based on the current data.
 
-Konklusjon
-Denne koden implementerer en simulering av spredningen av et zombievirus ved hjelp av SEIR-modellen. Den viser befolkningsendringene over tid og gir en visuell representasjon av virusets spredning. Ved å justere parametrene kan du utforske ulike scenarier og observere konsekvensene av endringer i spredningsraten, utvinningsvarigheten og andre faktorer.
+The animation stops if either all humans or zombies die out.
+
+## Starting the Animation
+The code creates an animation object using `animation.FuncAnimation()` and specifies the `animate()` function to be called in each round. The interval between each round is set to 100 milliseconds. The animation is displayed using `plt.show()`.
+
+## Conclusion
+This code implements a simulation of the spread of a zombie virus using the SEIR model. It displays population changes over time and provides a visual representation of the virus spread. By adjusting the parameters, you can explore different scenarios and observe the consequences of changes in the spread rate, recovery duration, and other factors.
