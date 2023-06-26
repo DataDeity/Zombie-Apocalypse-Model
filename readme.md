@@ -1,6 +1,6 @@
 # Simulation of Zombie Virus Spread
 
-This code is a simulation of the spread of a zombie virus in a population. It utilizes the SEIR (Susceptible-Exposed-Infected-Recovered) model to simulate the dynamics of the virus spread. The simulation is visualized using the matplotlib library in Python.
+This code is a simulation of the spread of a zombie virus in a population. It utilizes the SEIR (Susceptible-Exposed-Infected-Recovered) model to simulate the dynamics of the virus spread. The simulation is visualized using the matplotlib library in Python. Note that the new version.py is a alpha/beta version while the main.py is supposed to be more bug fixed
 
 ## Required Libraries
 The code relies on the following Python libraries:
